@@ -1,12 +1,8 @@
 <template lang="pug">
-  q-layout(view='lHh Lpr lFf')
+  q-layout(view='hHh lpR lFf')
     q-header(elevated='')
       q-toolbar
-        q-btn(flat='' dense='' round='' @click='leftDrawerOpen = !leftDrawerOpen' aria-label='Menu')
-          q-icon(name='menu')
-        q-toolbar-title
-          | Quasar App
-        div Quasar v{{ $q.version }}
+        q-toolbar-title.absolute-center Awesome Todo
     q-footer
       q-tabs
         q-route-tab(
@@ -17,12 +13,13 @@
           :label='nav.label')
     q-drawer(
       v-model='leftDrawerOpen'
+      :width="250"
       :breakpoint="767"
       bordered=''
-      content-class='bg-grey-2')
-      q-list
+      content-class='bg-primary')
+      q-list(dark)
         q-item-label(header='') Navigation
-        q-item(
+        q-item.text-grey-4(
           v-for="nav in navs"
           :key="nav.label"
           :to="nav.to"
@@ -68,4 +65,6 @@ export default {
   @media screen and (min-width: 768px)
     .q-footer
       display none
+  .q-drawer .q-router-link--exact-active
+    color white !important
 </style>
