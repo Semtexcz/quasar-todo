@@ -7,6 +7,16 @@
         q-toolbar-title
           | Quasar App
         div Quasar v{{ $q.version }}
+    q-footer
+      q-tabs
+        q-route-tab(
+          to="/"
+          icon='list'
+          label='Todo')
+        q-route-tab(
+          to="/settings"
+          icon='settings'
+          label='Settings')
     q-drawer(v-model='leftDrawerOpen' bordered='' content-class='bg-grey-2')
       q-list
         q-item-label(header='') Navigation
