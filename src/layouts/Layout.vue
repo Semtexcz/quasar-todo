@@ -15,7 +15,11 @@
           :to="nav.to"
           :icon='nav.icon'
           :label='nav.label')
-    q-drawer(v-model='leftDrawerOpen' bordered='' content-class='bg-grey-2')
+    q-drawer(
+      v-model='leftDrawerOpen'
+      :breakpoint="767"
+      bordered=''
+      content-class='bg-grey-2')
       q-list
         q-item-label(header='') Navigation
         q-item(
@@ -60,5 +64,8 @@ export default {
 }
 </script>
 
-<style>
+<style lang="stylus">
+  @media screen and (min-width: 768px)
+    .q-footer
+      display none
 </style>
