@@ -20,6 +20,14 @@
           q-item-label.row.justify-end(caption='') {{ task.dueDate }}
           q-item-label.row.justify-end(caption='')
             small {{ task.dueTime }}
+    q-item-section(side='')
+      q-btn(
+        @click.stop="promptToDelete(id)"
+        dense
+        flat=''
+        round=''
+        color='red'
+        icon='delete')
 </template>
 
 <script>
@@ -28,7 +36,17 @@ export default {
   name: 'Task',
   props: ['task', 'id'],
   methods: {
-    ...mapActions('tasks', ['updateTask'])
+    ...mapActions('tasks', ['updateTask']),
+    promptToDelete (id) {
+      this.$q.dialog({
+        title: 'Confirm',
+        message: 'Really delete?',
+        cancel: true,
+        persistent: true
+      }).onOk(() => {
+        console.log('deleted')
+      })
+    }
   }
 }
 </script>
