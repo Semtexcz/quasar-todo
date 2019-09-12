@@ -1,11 +1,12 @@
 <template lang="pug">
   q-item(
-    @click = "task.ccompleted = !task.ccompleted"
+    @click = "updateTask({id: id, updates: {completed: !task.completed}})"
     :class="!task.completed ? 'bg-orange-1' : 'bg-green-1'"
     clickable
     v-ripple='')
     q-item-section(side='' top='')
-      q-checkbox(v-model='task.completed')
+      q-checkbox.no-pointer-events(
+        :value='task.completed')
     q-item-section
       q-item-label(
         :class="{'text-strikethrough': task.completed}") {{ task.name }}
@@ -22,9 +23,13 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'Task',
-  props: ['task', 'id']
+  props: ['task', 'id'],
+  methods: {
+    ...mapActions('tasks', ['updateTask'])
+  }
 }
 </script>
 
