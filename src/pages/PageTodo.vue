@@ -3,28 +3,11 @@
     q-list(
       bordered=''
       separator='')
-        q-item(
+        task(
           v-for="(task, key) in tasks"
           :key="key"
-          @click = "task.ccompleted = !task.ccompleted"
-          :class="!task.completed ? 'bg-orange-1' : 'bg-green-1'"
-          clickable
-          v-ripple='')
-          q-item-section(side='' top='')
-            q-checkbox(v-model='task.completed')
-          q-item-section
-            q-item-label(
-              :class="{'text-strikethrough': task.completed}") {{ task.name }}
-          q-item-section(side='')
-            .row
-              .column.justify-center
-                q-icon.q-mr-xs(
-                  name="event"
-                  size="18px")
-              .column
-                q-item-label.row.justify-end(caption='') {{ task.dueDate }}
-                q-item-label.row.justify-end(caption='')
-                  small {{ task.dueTime }}
+          :task="task"
+          :id="key")
 </template>
 
 <style lang="stylus">
@@ -33,10 +16,14 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Task from 'src/components/Tasks/Task.vue'
 
 export default {
   computed: {
     ...mapGetters('tasks', ['tasks'])
+  },
+  components: {
+    Task
   }
 }
 </script>
