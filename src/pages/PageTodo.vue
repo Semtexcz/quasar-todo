@@ -4,8 +4,8 @@
       bordered=''
       separator='')
         q-item(
-          v-for="task in tasks"
-          :key="task.id"
+          v-for="(task, key) in tasks"
+          :key="key"
           @click = "task.ccompleted = !task.ccompleted"
           :class="!task.completed ? 'bg-orange-1' : 'bg-green-1'"
           clickable
