@@ -10,7 +10,35 @@
         dense
         icon='close')
     q-card-section
-      | Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum repellendus sit voluptate voluptas eveniet porro. Rerum blanditiis perferendis totam, ea at omnis vel numquam exercitationem aut, natus minima, porro labore.
+      .row.q-mb-sm
+        q-input.col(
+          outlined=''
+          v-model='taskToSubmit.name'
+          label='Task name')
+      .row.q-mb-sm
+        q-input(
+          label='Due date'
+          outlined=''
+          v-model='taskToSubmit.dueDate')
+          template(v-slot:append="")
+            q-icon.cursor-pointer(name='event')
+              q-popup-proxy(ref='qDateProxy' transition-show='scale' transition-hide='scale')
+                q-date(v-model='taskToSubmit.dueDate' @input='() => $refs.qDateProxy.hide()')
+      .row.q-mb-sm
+        q-input(
+          label='Due time'
+          outlined
+          v-model='taskToSubmit.dueTime'
+          )
+          template(v-slot:append="")
+            q-icon.cursor-pointer(name='access_time')
+              q-popup-proxy(
+                transition-show='scale'
+                transition-hide='scale')
+                q-time(
+                  :format24h="true"
+                  v-model='taskToSubmit.dueTime')
+
     q-card-actions(align='right')
       q-btn(
         flat=''
@@ -21,7 +49,17 @@
 
 <script>
 export default {
-  name: 'AddTask'
+  name: 'AddTask',
+  data () {
+    return {
+      taskToSubmit: {
+        name: '',
+        dueDate: '',
+        dueTime: '',
+        completed: false
+      }
+    }
+  }
 }
 </script>
 
