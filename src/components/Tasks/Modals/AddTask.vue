@@ -5,19 +5,9 @@
       @submit.prevent="submitForm"
       )
       q-card-section
-        .row.q-mb-sm
-          q-input.col(
-            autofocus=''
-            outlined=''
-            v-model='taskToSubmit.name'
-            label='Task name'
-            :rules="[val => !!val || 'Field is required']"
-            ref="name")
-            template(v-slot:append='')
-              q-icon.cursor-pointer(
-                v-if="taskToSubmit.name"
-                name='close'
-                @click="taskToSubmit.name = ''")
+        modal-task-name(
+          :name.sync="taskToSubmit.name"
+        )
         .row.q-mb-sm
           q-input(
             label='Due date'
@@ -63,11 +53,13 @@
           color='primary'
           type="submit"
           )
+      pre {{taskToSubmit}}
 </template>
 
 <script>
 import { mapActions } from 'vuex'
 import ModalHeader from 'src/components/Tasks/Modals/Shared/ModalHeader.vue'
+import ModalTaskName from 'src/components/Tasks/Modals/Shared/ModalTaskName.vue'
 
 export default {
   name: 'AddTask',
@@ -99,7 +91,8 @@ export default {
     }
   },
   components: {
-    ModalHeader
+    ModalHeader,
+    ModalTaskName
   }
 }
 </script>
