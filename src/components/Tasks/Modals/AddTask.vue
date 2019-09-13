@@ -22,8 +22,13 @@
           v-model='taskToSubmit.dueDate')
           template(v-slot:append="")
             q-icon.cursor-pointer(name='event')
-              q-popup-proxy(ref='qDateProxy' transition-show='scale' transition-hide='scale')
-                q-date(v-model='taskToSubmit.dueDate' @input='() => $refs.qDateProxy.hide()')
+              q-popup-proxy(
+                ref='qDateProxy'
+                transition-show='scale'
+                transition-hide='scale')
+                q-date(
+                  v-model='taskToSubmit.dueDate'
+                  @input='() => $refs.qDateProxy.hide()')
       .row.q-mb-sm
         q-input(
           label='Due time'
