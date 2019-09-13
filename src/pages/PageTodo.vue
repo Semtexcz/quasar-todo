@@ -16,7 +16,9 @@
         size="24px"
         icon="add")
     q-dialog(v-model='showAddTask')
-      add-task
+      add-task(
+      @close="showAddTask = false"
+      )
 </template>
 
 <style lang="stylus">
@@ -31,7 +33,7 @@ import AddTask from 'src/components/Tasks/Modals/AddTask.vue'
 export default {
   data () {
     return {
-      showAddTask: true
+      showAddTask: false
     }
   },
   computed: {
