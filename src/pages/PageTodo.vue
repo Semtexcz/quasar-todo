@@ -1,6 +1,7 @@
 <template lang="pug">
   q-page.q-pa-md
     q-list(
+      v-if="Object.keys(tasks).length"
       bordered=''
       separator='')
         task(

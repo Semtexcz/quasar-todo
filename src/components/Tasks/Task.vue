@@ -10,7 +10,9 @@
     q-item-section
       q-item-label(
         :class="{'text-strikethrough': task.completed}") {{ task.name }}
-    q-item-section(side='')
+    q-item-section(
+      side=''
+      v-if="task.dueDate")
       .row
         .column.justify-center
           q-icon.q-mr-xs(
