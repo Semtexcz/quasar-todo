@@ -29,12 +29,12 @@
 <script>
 import { mapGetters } from 'vuex'
 import Task from 'src/components/Tasks/Task.vue'
-import AddTask from 'src/components/Tasks/Modals/AddTask.vue'
+import AddTask from 'src/components/Tasks/Modals/Shared/AddTask.vue'
 
 export default {
   data () {
     return {
-      showAddTask: false
+      showAddTask: true
     }
   },
   computed: {

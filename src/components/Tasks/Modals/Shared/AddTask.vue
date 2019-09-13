@@ -1,14 +1,6 @@
 <template lang="pug">
   q-card
-    q-card-section.row
-      .text-h6 Add task
-      q-space
-      q-btn(
-        v-close-popup
-        flat=''
-        round=''
-        dense
-        icon='close')
+    modal-header Add Task
     q-form(
       @submit.prevent="submitForm"
       )
@@ -75,6 +67,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import ModalHeader from 'src/components/Tasks/Modals/Shared/ModalHeader.vue'
 
 export default {
   name: 'AddTask',
@@ -104,6 +97,9 @@ export default {
       this.taskToSubmit.dueDate = ''
       this.taskToSubmit.dueTime = ''
     }
+  },
+  components: {
+    ModalHeader
   }
 }
 </script>
