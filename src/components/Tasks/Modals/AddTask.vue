@@ -13,6 +13,7 @@
           @clear="clearDueDate"
         )
         modal-due-time(
+          v-if="taskToSubmit.dueDate"
           :dueTime.sync="taskToSubmit.dueTime"
         )
 
