@@ -23,20 +23,39 @@
           q-item-label.row.justify-end(caption='')
             small {{ task.dueTime }}
     q-item-section(side='')
-      q-btn(
-        @click.stop="promptToDelete(id)"
-        dense
-        flat=''
-        round=''
-        color='red'
-        icon='delete')
+      .row
+        q-btn(
+          @click.stop="showEditTask=true"
+          dense
+          flat=''
+          round=''
+          color='primary'
+          icon='edit')
+        q-btn(
+          @click.stop="promptToDelete(id)"
+          dense
+          flat=''
+          round=''
+          color='red'
+          icon='delete')
+    q-dialog(v-model='showEditTask')
+      edit-task(
+        @close="showEditTask = false"
+      )
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+import EditTask from './Modals/EditTask'
 export default {
   name: 'Task',
+  components: { EditTask },
   props: ['task', 'id'],
+  data () {
+    return {
+      'showEditTask': false
+    }
+  },
   methods: {
     ...mapActions('tasks', ['updateTask', 'deleteTask']),
     promptToDelete (id) {
@@ -49,6 +68,9 @@ export default {
         this.deleteTask(id)
       })
     }
+  },
+  comments: {
+    EditTask
   }
 }
 </script>

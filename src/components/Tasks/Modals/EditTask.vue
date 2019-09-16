@@ -31,7 +31,7 @@ import ModalDueTime from 'src/components/Tasks/Modals/Shared/ModalDueTime.vue'
 import ModalButtons from 'src/components/Tasks/Modals/Shared/ModalButtons.vue'
 
 export default {
-  name: 'AddTask',
+  name: 'EditTask',
   data () {
     return {
       taskToSubmit: {

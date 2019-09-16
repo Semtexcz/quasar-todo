@@ -34,7 +34,7 @@ import AddTask from 'src/components/Tasks/Modals/AddTask.vue'
 export default {
   data () {
     return {
-      showAddTask: true
+      showAddTask: false
     }
   },
   computed: {
