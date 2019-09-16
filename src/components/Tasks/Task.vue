@@ -41,15 +41,18 @@
     q-dialog(v-model='showEditTask')
       edit-task(
         @close="showEditTask = false"
+        :task="task"
+        :id="id"
       )
+      pre {{ task }}
+      pre {{ id }}
 </template>
 
 <script>
 import { mapActions } from 'vuex'
-import EditTask from './Modals/EditTask'
+import EditTask from 'src/components/Tasks/Modals/EditTask.vue'
 export default {
   name: 'Task',
-  components: { EditTask },
   props: ['task', 'id'],
   data () {
     return {
@@ -69,7 +72,7 @@ export default {
       })
     }
   },
-  comments: {
+  components: {
     EditTask
   }
 }

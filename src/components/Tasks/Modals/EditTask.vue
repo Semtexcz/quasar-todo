@@ -1,6 +1,6 @@
 <template lang="pug">
   q-card
-    modal-header Add Task
+    modal-header Edit Task
     q-form(
       @submit.prevent="submitForm"
       )
@@ -17,9 +17,8 @@
           v-if="taskToSubmit.dueDate"
           :dueTime.sync="taskToSubmit.dueTime"
         )
-
-      q-card-actions(align='right')
-        modal-buttons
+      modal-buttons
+      pre Task: {{ task }}
 </template>
 
 <script>
@@ -31,19 +30,14 @@ import ModalDueTime from 'src/components/Tasks/Modals/Shared/ModalDueTime.vue'
 import ModalButtons from 'src/components/Tasks/Modals/Shared/ModalButtons.vue'
 
 export default {
-  name: 'EditTask',
+  props: ['task', 'id'],
   data () {
     return {
-      taskToSubmit: {
-        name: '',
-        dueDate: '',
-        dueTime: '',
-        completed: false
-      }
+      taskToSubmit: {}
     }
   },
   methods: {
-    ...mapActions('tasks', ['addTask']),
+    ...mapActions('tasks', ['updateTask']),
     submitForm () {
       this.$refs.modalTaskName.$refs.name.validate()
       if (!this.$refs.modalTaskName.$refs.name.hasError) {
@@ -51,7 +45,10 @@ export default {
       }
     },
     submitTask () {
-      this.addTask(this.taskToSubmit)
+      this.updateTask({
+        id: this.id,
+        updates: this.taskToSubmit
+      })
       this.$emit('close')
     },
     clearDueDate () {
@@ -65,6 +62,9 @@ export default {
     ModalDueDate,
     ModalDueTime,
     ModalButtons
+  },
+  mounted () {
+    this.taskToSubmit = Object.assign({}, this.task)
   }
 }
 </script>

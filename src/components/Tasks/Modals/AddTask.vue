@@ -17,9 +17,7 @@
           v-if="taskToSubmit.dueDate"
           :dueTime.sync="taskToSubmit.dueTime"
         )
-
-      q-card-actions(align='right')
-        modal-buttons
+      modal-buttons
 </template>
 
 <script>
