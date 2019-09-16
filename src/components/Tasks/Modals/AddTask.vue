@@ -12,26 +12,9 @@
           :dueDate.sync="taskToSubmit.dueDate"
           @clear="clearDueDate"
         )
-        .row.q-mb-sm(
-          v-if="taskToSubmit.dueDate"
-          )
-          q-input.col(
-            label='Due time'
-            outlined
-            v-model='taskToSubmit.dueTime'
-            )
-            template(v-slot:append="")
-              q-icon.cursor-pointer(
-                v-if="taskToSubmit.dueTime"
-                name='close'
-                @click="taskToSubmit.dueTime = ''")
-              q-icon.cursor-pointer(name='access_time')
-                q-popup-proxy(
-                  transition-show='scale'
-                  transition-hide='scale')
-                  q-time(
-                    :format24h="true"
-                    v-model='taskToSubmit.dueTime')
+        modal-due-time(
+          :dueTime.sync="taskToSubmit.dueTime"
+        )
 
       q-card-actions(align='right')
         q-btn(
@@ -47,6 +30,7 @@ import { mapActions } from 'vuex'
 import ModalHeader from 'src/components/Tasks/Modals/Shared/ModalHeader.vue'
 import ModalTaskName from 'src/components/Tasks/Modals/Shared/ModalTaskName.vue'
 import ModalDueDate from 'src/components/Tasks/Modals/Shared/ModalDueDate.vue'
+import ModalDueTime from 'src/components/Tasks/Modals/Shared/ModalDueTime.vue'
 
 export default {
   name: 'AddTask',
@@ -80,7 +64,8 @@ export default {
   components: {
     ModalHeader,
     ModalTaskName,
-    ModalDueDate
+    ModalDueDate,
+    ModalDueTime
   }
 }
 </script>
