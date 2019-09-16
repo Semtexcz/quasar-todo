@@ -7,6 +7,7 @@
       q-card-section
         modal-task-name(
           :name.sync="taskToSubmit.name"
+          ref="modalTaskName"
         )
         modal-due-date(
           :dueDate.sync="taskToSubmit.dueDate"
@@ -18,11 +19,7 @@
         )
 
       q-card-actions(align='right')
-        q-btn(
-          label='Save'
-          color='primary'
-          type="submit"
-          )
+        modal-buttons
       pre {{taskToSubmit}}
 </template>
 
@@ -32,6 +29,7 @@ import ModalHeader from 'src/components/Tasks/Modals/Shared/ModalHeader.vue'
 import ModalTaskName from 'src/components/Tasks/Modals/Shared/ModalTaskName.vue'
 import ModalDueDate from 'src/components/Tasks/Modals/Shared/ModalDueDate.vue'
 import ModalDueTime from 'src/components/Tasks/Modals/Shared/ModalDueTime.vue'
+import ModalButtons from 'src/components/Tasks/Modals/Shared/ModalButtons.vue'
 
 export default {
   name: 'AddTask',
@@ -48,8 +46,8 @@ export default {
   methods: {
     ...mapActions('tasks', ['addTask']),
     submitForm () {
-      this.$refs.name.validate()
-      if (!this.$refs.name.hasError) {
+      this.$refs.modalTaskName.$refs.name.validate()
+      if (!this.$refs.modalTaskName.$refs.name.hasError) {
         this.submitTask()
       }
     },
@@ -66,7 +64,8 @@ export default {
     ModalHeader,
     ModalTaskName,
     ModalDueDate,
-    ModalDueTime
+    ModalDueTime,
+    ModalButtons
   }
 }
 </script>
